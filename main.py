@@ -18,6 +18,7 @@ import gi
 gi.require_version('Gst', '1.0')
 from gi.repository import Gst, GObject
 import logging
+import argparse
 
 GObject.threads_init()
 Gst.init(None)
@@ -65,7 +66,7 @@ class VideoPlayer(object):
         self.autovideoconvert = Gst.ElementFactory.make('autovideoconvert')
         self.pipeline.add(self.autovideoconvert)
 
-        self.autovideosink = Gst.ElementFactory.make('autovideosink')
+        self.autovideosink = Gst.ElementFactory.make('gtksink')
         self.pipeline.add(self.autovideosink)
 
         # Audio elements
@@ -109,7 +110,7 @@ class VideoPlayer(object):
                     link5))
         link6 = self.autovideoconvert.link(self.autovideosink)
         if not link6:
-            _log.error('Could not link autovideoconvert & autovideosink!\n{0}'.format(
+            _log.error('Could not link autovideoconvert & gtksink!\n{0}'.format(
                     link6))
 
         self.bus = self.pipeline.get_bus()
@@ -131,7 +132,12 @@ class VideoPlayer(object):
 
 
 def main():
-    player = VideoPlayer(src="/home/jefflgaol/GStreamer/video.mp4")
+    # Argument parser
+    parser = argparse.ArgumentParser(description="GStreamer to display video.")
+    parser.add_argument('-i', '--input', help="Path to video file", required=True)
+    args = parser.parse_args()
+
+    player = VideoPlayer(src=str(args.input))
     player.run()
 
 if __name__ == '__main__':
