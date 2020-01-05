@@ -1,4 +1,4 @@
-# GStreamer-Video-Decoder-Example
+# GStreamer-Audio-Video-Decoder-Example
 This is an example audio-video decoder implementation in GStreamer 1.0 (Python).
 
 I changed the code from http://stackoverflow.com/questions/8187257/play-audio-and-video-with-a-pipeline-in-gstreamer-python/8197837 created by Joan Wandborg that previously implemented in GStreamer in 0.10.
