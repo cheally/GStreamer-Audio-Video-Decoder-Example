@@ -6,12 +6,12 @@ I changed the code from http://stackoverflow.com/questions/8187257/play-audio-an
 ## How To Use
 You can use the code like this:
 ```
-python3 main.py
+python3 main.py \
     --input='<path to video file>'
 ```
 For example:
 ```
-python3 main.py
+python3 main.py \
     --input='/home/jefflgaol/Dokumen/GStreamer/video.mp4'
 ```
 
